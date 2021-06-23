@@ -20,16 +20,18 @@ import { ListaProductosClienteComponent } from './components/lista-productos-cli
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { HorariosComponent } from './components/horarios/horarios.component';
+import { ClientsComponent } from './components/clients/clients.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const firebaseConfig =  {
-  apiKey: 'AIzaSyD65OWT3p_SEseHU-1ifhJUqhpDB1OAclU',
-  authDomain: 'prueba-crud-bc89e.firebaseapp.com',
-  databaseURL: 'https://prueba-crud-bc89e.firebaseio.com',
-  projectId: 'prueba-crud-bc89e',
-  storageBucket: 'prueba-crud-bc89e.appspot.com',
-  messagingSenderId: '124188384930',
-  appId: '1:124188384930:web:a34f8efe997414ab' };
+  apiKey: "AIzaSyBIE5abP6PCuoBMq-8hciJaoTTawkpToRk",
+  authDomain: "aplicacion-stock.firebaseapp.com",
+  projectId: "aplicacion-stock",
+  storageBucket: "aplicacion-stock.appspot.com",
+  messagingSenderId: "780056274035",
+  appId: "1:780056274035:web:31daff23ae20c43da03606",
+  measurementId: "G-YQF9XY608B" };
 
 @NgModule({
   declarations: [
@@ -39,10 +41,11 @@ const firebaseConfig =  {
     ToolbarComponent,
     LoginComponent,
     ListaProductosClienteComponent,
-    HorariosComponent
+    HorariosComponent,
+    ClientsComponent
   ],
   imports: [
-    
+    HttpClientModule, 
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,

@@ -1,24 +1,27 @@
 <header>
-    <mat-toolbar color="primary">
-
+    <mat-toolbar color="primary" class="navbar">
+        
         <mat-toolbar-row>
+            <span  color="primary">
+                <mat-icon class="pointer" (click)="opened = !opened">menu</mat-icon>
+            </span>
+           
+            <div class="row d-flex">
+                <div class="col-xs-4 col-md-4"><span>Aplicación Stock</span></div>
 
-            <div class="row">
-                <div class="col-xs-4 col-md-4"><span>PWA Carnicería</span></div>
-
-                <div class="col-xs-4 col-md-4" *ngIf="this.trueFalse; else cerrado">
-                    <button mat-raised-button color="accent" (click)="pruebaBoton()">Local abierto <mat-icon>meeting_room</mat-icon></button>
+                <div class="col-xs-4 col-md-4 ml-auto" *ngIf="this.trueFalse; else cerrado">
+                    <button  style="border-radius: 3px;"mat-raised-button color="accent" (click)="pruebaBoton()">Local abierto <mat-icon>meeting_room</mat-icon></button>
                 </div>
                 <ng-template #cerrado>
-                    <div class=" col-xs-4col-md-4">
-                        <button mat-raised-button color="warn" (click)="pruebaBoton()">Local cerrado <mat-icon>no_meeting_room</mat-icon></button>
+                    <div class=" col-xs-4col-md-4 ml-auto">
+                        <button style="border-radius: 3px;" mat-raised-button color="warn" (click)="pruebaBoton()">Local cerrado <mat-icon>no_meeting_room</mat-icon></button>
                     </div>
 
                 </ng-template>
 
 
-                <div class="col-xs-4 col-md-4 pull-right">
-                    <button mat-stroked-button color="warn" (click)="logout()">Cerrar Sesion <mat-icon>clear</mat-icon></button>
+                <div class="col-xs-4 col-md-4 pull-right ml-auto">
+                    <button style="border-radius: 3px;" class="derecha" mat-stroked-button color="warn" (click)="logout()">Cerrar Sesion <mat-icon>clear</mat-icon></button>
                 </div>
             </div>
         </mat-toolbar-row>
@@ -28,7 +31,14 @@
     </mat-toolbar>
 
 </header>
+<mat-sidenav-container>
+    <mat-sidenav #sideNav [(opened)]="opened" mode="side">
+        <mat-nav-list>
+            <a mat-list-item>Inicio</a>
+        </mat-nav-list>
 
+    </mat-sidenav>
+</mat-sidenav-container>
 <div class="h3 text-center pt-2">Agregar productos al stock</div>
 <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
@@ -39,18 +49,50 @@
 
         <ng-container matColumnDef="nombre">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-            <td (click)="agrega(element)" mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            <td (click)="agrega(element)" class="pointer" mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        </ng-container>
+        <ng-container matColumnDef="linea">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Linea </th>
+            <td (click)="agrega(element)" class="pointer" mat-cell *matCellDef="let element"> {{element.linea}} </td>
+        </ng-container>
+        <ng-container matColumnDef="skud">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> SKU</th>
+            <td  mat-cell *matCellDef="let element"> {{element.skud}} </td>
+        </ng-container>
+        <ng-container matColumnDef="cod_barra">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo de barra</th>
+            <td  mat-cell *matCellDef="let element"> {{element.cod_barra}} </td>
+        </ng-container>
+        <ng-container matColumnDef="marca">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Marca</th>
+            <td  mat-cell *matCellDef="let element"> {{element.marca}} </td>
+        </ng-container>
+        <ng-container matColumnDef="categoria">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Categoria</th>
+            <td  mat-cell *matCellDef="let element"> {{element.categoria}} </td>
+        </ng-container>
+        <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción</th>
+            <td  mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="unidad_de_medida">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Unidad de medida</th>
+            <td  mat-cell *matCellDef="let element"> {{element.unidad_de_medida}} </td>
         </ng-container>
 
 
         <ng-container matColumnDef="cantidad">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
-            <td mat-cell *matCellDef="let element"> {{element.cantidad}} kg</td>
+            <td mat-cell *matCellDef="let element"> {{element.cantidad}}</td>
         </ng-container>
 
-
+        <ng-container matColumnDef="costo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio costo</th>
+            <td  mat-cell *matCellDef="let element"> {{element.costo | currency:'CLP':'symbol'}} </td>
+        </ng-container>
         <ng-container matColumnDef="precio">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio Venta </th>
             <td mat-cell *matCellDef="let element"> {{element.precio | currency:'CLP':'symbol'}} </td>
         </ng-container>
 
@@ -96,11 +138,18 @@
         </div>
     </form>
 
-    <div id="descuento">
+    <div class="tablaventa" id="descuento">
         <table class="table cambiatabla" id="descuento">
             <thead>
                 <tr>
                     <th scope="col">Nombre </th>
+                    <th scope="col">SKUD </th>
+                    <th scope="col">Codigo de barras </th>
+                    <th scope="col">Marca </th>
+                    <th scope="col">Categoria </th>
+                    <th scope="col">Descripción </th>
+                    <th scope="col">Precio Costo </th>
+                    <th scope="col">Unidad de medida</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Precio</th>
                     <th scope="col">Valor</th>
@@ -109,7 +158,14 @@
             <tbody>
                 <tr *ngFor="let producto of arregloProductos">
                     <th scope="col">{{producto.nombre}}</th>
-                    <th scope="col">{{producto.cantidad}} kg</th>
+                    <th scope="col">{{producto.skud}}</th>
+                    <th scope="col">{{producto.cod_barra}}</th>
+                    <th scope="col">{{producto.marca}}</th>
+                    <th scope="col">{{producto.categoria}}</th>
+                    <th scope="col">{{producto.descripcion}}</th>
+                    <th scope="col">{{producto.costo | currency:'CLP':'symbol'}}</th>
+                    <th scope="col">{{producto.unidad_de_medida}}</th>
+                    <th scope="col">{{producto.cantidad}}</th>
                     <th scope="col">{{producto.precio | currency:'CLP':'symbol'}}</th>
                     <th scope="col">{{producto.precio * producto.cantidad | currency:'CLP':'symbol'}}</th>
                     <button mat-stroked-button color="warn" (click)="eliminaDescuento(producto)">Eliminar<mat-icon>delete</mat-icon></button>
@@ -118,6 +174,13 @@
             </tbody>
             <tfoot>
                 <tr>
+                    <th scope="col"> </th>
+                    <th scope="col"> </th>
+                    <th scope="col"> </th>
+                    <th scope="col"> </th>
+                    <th scope="col"> </th>
+                    <th scope="col"> </th>
+                    <th scope="col"> </th>
                     <th scope="col"> </th>
                     <th scope="col"> </th>
                     <th scope="col">Total: </th>

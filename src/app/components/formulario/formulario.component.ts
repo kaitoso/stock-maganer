@@ -23,8 +23,16 @@ export class FormularioComponent implements OnInit {
        // tslint:disable-next-line:prefer-const
        let nuevoProducto = {
         nombre: this.producto.seleccion.nombre,
+        skud: this.producto.seleccion.skud,
+        cod_barra: this.producto.seleccion.cod_barra,
+        marca : this.producto.seleccion.marca,
+        descripcion: this.producto.seleccion.descripcion,
+        costo: this.producto.seleccion.costo,
+        unidad_de_medida: this.producto.seleccion.unidad_de_medida,
         cantidad: Number(this.producto.seleccion.cantidad),
-        precio: Number(this.producto.seleccion.precio)
+        precio: Number(this.producto.seleccion.precio),
+        categoria:this.producto.seleccion.categoria,
+        linea: this.producto.seleccion.linea
       };
        console.log('nuevo', nuevoProducto);
        this.producto.agregaProducto(nuevoProducto);

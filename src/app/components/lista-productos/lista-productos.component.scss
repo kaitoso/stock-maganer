@@ -4,6 +4,66 @@
 table {
     width: 96%;
 }
+.mat-column-nombre{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
+.mat-column-skud{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
+.mat-column-descripcion{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
+.mat-column-categoria{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
+.mat-column-cod_barra{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
+.mat-column-marca{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
+.mat-column-unidad_de_medida{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
+.mat-column-cantidad{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
+.mat-column-costo{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
+.mat-column-precio{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
+.mat-column-acciones{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
+.mat-column-linea{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
 
 .mat-form-field {
     font-size: 16px;
@@ -18,7 +78,7 @@ table {
 .containerr {
     display: flex;
     justify-content: center;
-    height: 400px;
+    
     overflow: auto;
 }
 
@@ -28,4 +88,27 @@ table {
 
 .cambiatabla {
     background-color: aliceblue;
+    
+}
+.tablaventa{
+    width: 100%!important;
+}
+.derecha{
+    float: left;
+}
+.pointer {
+    cursor: pointer;
+}
+.navbar{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+mat-sidenav{
+    width: 200px;
+    cursor: pointer;
+    background-color: #440B5F;
+    position: fixed;
+    top: 70px;
+    z-index: 1000;
 }

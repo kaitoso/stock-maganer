@@ -50,8 +50,9 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
    cantidadNueva: number;
    cantidadVieja: number;
    cantidadmedia: number;
-  displayedColumns: string[] = ['nombre', 'cantidad', 'precio', 'acciones'];
+  displayedColumns: string[] = ['skud','marca','linea','nombre','cod_barra','categoria','descripcion','unidad_de_medida', 'cantidad', 'costo','precio', 'acciones'];
   dataSource = new MatTableDataSource();
+  opened = false;
  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
     myForm = new FormGroup({
@@ -198,9 +199,17 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
 
   cleanForm(): void {
     this.productoService.seleccion.nombre = '';
+    this.productoService.seleccion.skud = '';
+    this.productoService.seleccion.cod_barra = '';
+    this.productoService.seleccion.marca = '';
+    this.productoService.seleccion.descripcion = '';
+    this.productoService.seleccion.costo = 0;
+    this.productoService.seleccion.unidad_de_medida = '';
     this.productoService.seleccion.cantidad = 0;
     this.productoService.seleccion.precio = 0;
     this.productoService.seleccion.id = null;
+    this.productoService.seleccion.categoria ='';
+    this.productoService.seleccion.linea="";
 
   }
 

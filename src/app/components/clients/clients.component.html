@@ -1,0 +1,100 @@
+<!-- BEGIN: Page Main-->
+<div id="main">
+    <div class="row">
+        <div class="content-wrapper-before gradient-45deg-indigo-purple"></div>
+        <div class="col s12">
+            <div class="container">
+                <section class="invoice-list-wrapper section">
+                    <!-- create invoice button-->
+                    <!-- Options and filter dropdown button-->
+                    <div class="invoice-filter-action mr-3">
+                        <a href="#" class="btn waves-effect waves-light invoice-export border-round z-depth-4">
+                            <i class="material-icons">picture_as_pdf</i>
+                            <span class="hide-on-small-only">Export to PDF</span>
+                        </a>
+                    </div>
+                    <!-- create invoice button-->
+                    <div class="invoice-create-btn">
+                        <a [routerLink]="['/clients/create']"
+                            class="btn waves-effect waves-light invoice-create border-round z-depth-4">
+                            <i class="material-icons">add</i>
+                            <span class="hide-on-small-only">Create</span>
+                        </a>
+                    </div>
+                    <div class="filter-btn">
+                        <!-- Dropdown Trigger -->
+                        <a class='dropdown-trigger btn waves-effect waves-light purple darken-1 border-round'
+                            href='#' data-target='btn-filter'>
+                            <span class="hide-on-small-only">Filter Invoice</span>
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </a>
+                        <!-- Dropdown Structure -->
+                        <ul id='btn-filter' class='dropdown-content'>
+                            <li><a href="#!">Paid</a></li>
+                            <li><a href="#!">Unpaid</a></li>
+                            <li><a href="#!">Partial Payment</a></li>
+                        </ul>
+                    </div>
+                    <div class="responsive-table">
+                        <table class="table invoice-data-table white border-radius-4 pt-1">
+                            <thead>
+                                <tr>
+                                    <!-- data table responsive icons -->
+                                    <th></th>
+                                    <!-- data table checkbox -->
+                                    <th></th>
+                                    <th>
+                                        <span>RUT#</span>
+                                    </th>
+                                    <th>Nombre</th>
+                                    <th>Sexo</th>
+                                    <th>F. Nacimiento</th>
+                                    <th>Dirección</th>
+                                    <th>Teléfono</th>
+                                    <th>Celular</th>
+                                    <th>Email</th>
+                                    <th>Acciones</th>
+                                  </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let client of clients; let i = index" [attr.data-index]="i">
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <a [routerLink]="['/clients', client.id, 'edit']">
+                                            {{ client.rut }}
+                                        </a>
+                                    </td>
+                                    <td>{{ client.nombre_completo }}</td>
+                                    <td>{{ client.sexo }}</td>
+                                    <td><small>{{ client.fecha_nacimiento }}</small></td>
+                                    <td><small>{{ [client.direccion, client.numero, client.comuna.nombre, client.codigo_postal].join(",") }}</small></td>
+                                    <td><span class="invoice-amount">{{ client.telefono }}</span></td>
+                                    <td><span class="invoice-amount">{{ client.celular }}</span></td>
+                                    <td><small>{{ client.email }}</small></td>
+                                    <td>
+                                        <div class="invoice-action">
+                                            <a [routerLink]="['/clients', client.id, 'edit']" class="invoice-action-view mr-4">
+                                                <i class="material-icons">edit</i>
+                                            </a>
+                                            <a href="javascript:void(0)" (click)="deleteClient(client.id, i)" class="invoice-action-delete" [attr.data-id]="client.id">
+                                                <i class="material-icons">close</i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                <div style="bottom: 50px; right: 19px;" class="fixed-action-btn direction-top">
+                    <a [routerLink]="['/clients/create']" class="btn-floating btn-large gradient-45deg-light-blue-cyan gradient-shadow">
+                        <i class="material-icons">add</i>
+                    </a>
+                </div>
+            </div>
+            <div class="content-overlay"></div>
+        </div>
+    </div>
+</div>

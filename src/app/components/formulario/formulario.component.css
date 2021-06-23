@@ -8,3 +8,8 @@
     width: 98%;
     margin-left: 1%;
 }
+.hermanos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

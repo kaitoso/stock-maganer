@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
 
     <mat-toolbar-row>
-        <span>PWA Carnicería</span> &nbsp; &nbsp; &nbsp; &nbsp;
+        <span>Aplicacion stock</span> &nbsp; &nbsp; &nbsp; &nbsp;
         <div *ngIf="this.trueFalse; else cerrado">
             <button mat-raised-button color="accent">Local abierto <mat-icon>meeting_room</mat-icon></button>
         </div>
@@ -14,7 +14,7 @@
         &nbsp; &nbsp; &nbsp; &nbsp;
         <a [routerLink]="['/horarios']">Horarios</a>
         <span class="espacio-blanco"></span>
-        <button mat-stroked-button color="accent" (click)="login()">Iniciar sesion <mat-icon>account_box</mat-icon></button>
+        <button  mat-stroked-button color="accent" (click)="login()">Iniciar sesion <mat-icon>account_box</mat-icon></button>
 
     </mat-toolbar-row>
 

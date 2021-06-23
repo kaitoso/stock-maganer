@@ -7,6 +7,7 @@ import { ListaProductosComponent } from './components/lista-productos/lista-prod
 import { ListaProductosClienteComponent } from './components/lista-productos-cliente/lista-productos-cliente.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HorariosComponent } from './components/horarios/horarios.component';
+import { ClientsComponent } from './components/clients/clients.component';
 
 
 
@@ -15,12 +16,13 @@ const routes: Routes = [
   {path: '', component: ListaProductosClienteComponent },
   {path: 'horarios', component: HorariosComponent},
   {path: 'login', component: LoginComponent },
-  {path: 'admin/lista-productos', component: ListaProductosComponent, canActivate:[AuthGuard] }
+  {path: 'admin/lista-productos', component: ListaProductosComponent, canActivate:[AuthGuard] },
+  {path: 'admin/clientes', component: ClientsComponent, canActivate:[AuthGuard] }
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{ useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

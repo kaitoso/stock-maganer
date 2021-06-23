@@ -18,8 +18,16 @@ export class ProductoService {
   public seleccion = {
     id: null,
     nombre: '',
+    skud: '',
+    cod_barra: '',
+       marca: '',
+       descripcion: '',
+       costo: 0,
+       unidad_de_medida: '',
     cantidad: 0,
-    precio: 0
+    precio: 0,
+    categoria:"",
+    linea:""
   };
 
   constructor(private readonly afs: AngularFirestore) {
@@ -44,8 +52,16 @@ export class ProductoService {
     // tslint:disable-next-line:one-variable-per-declaration
     const productoeditar: ProductoI = {
        nombre: producto.nombre,
+       skud: producto.skud,
+       cod_barra: producto.cod_barra,
+       marca: producto.marca,
+       descripcion: producto.descripcion,
+       costo: Number(producto.costo),
+       unidad_de_medida: producto.unidad_de_medida,
        cantidad: Number(producto.cantidad),
-       precio: Number(producto.precio)
+       precio: Number(producto.precio),
+       categoria: producto.categoria,
+       linea: producto.linea
     };
 
 
