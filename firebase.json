@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/pwa-carniceria",
+    "public": "dist/aplicacion-stock",
     "ignore": [
       "firebase.json",
       "**/.*",

@@ -1,7 +1,7 @@
 {
     "lang": "es",
-    "name": "pwa-carniceria",
-    "short_name": "pwa-carniceria",
+    "name": "aplicacion-stock",
+    "short_name": "apliccion-stock",
     "theme_color": "#1976d2",
     "background_color": "#fafafa",
     "display": "fullscreen",
