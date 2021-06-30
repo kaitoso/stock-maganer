@@ -22,6 +22,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { HorariosComponent } from './components/horarios/horarios.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PacksComponent } from './components/packs/packs.component';
 
 
 const firebaseConfig =  {
@@ -42,7 +43,8 @@ const firebaseConfig =  {
     LoginComponent,
     ListaProductosClienteComponent,
     HorariosComponent,
-    ClientsComponent
+    ClientsComponent,
+    PacksComponent
   ],
   imports: [
     HttpClientModule, 

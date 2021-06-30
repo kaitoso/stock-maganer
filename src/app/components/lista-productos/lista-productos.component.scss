@@ -100,9 +100,10 @@ table {
     cursor: pointer;
 }
 .navbar{
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 1000;
+
 }
 mat-sidenav{
     width: 200px;
@@ -111,4 +112,10 @@ mat-sidenav{
     position: fixed;
     top: 70px;
     z-index: 1000;
+}
+.boton-hamburguesa{
+     background: none;
+     border: none;
+     color: white;
+
 }
