@@ -13,16 +13,24 @@ import { ClientsComponent } from './components/clients/clients.component';
 
 
 const routes: Routes = [
-  {path: '', component: ListaProductosClienteComponent },
-  {path: 'horarios', component: HorariosComponent},
-  {path: 'login', component: LoginComponent },
-  {path: 'admin/lista-productos', component: ListaProductosComponent, canActivate:[AuthGuard] },
-  {path: 'admin/clientes', component: ClientsComponent, canActivate:[AuthGuard] }
+  // {path: '', component: ListaProductosClienteComponent },
+  // {path: 'horarios', component: HorariosComponent},
+  {path: 'auth', loadChildren:()=> import('./auth/auth.module').then(m=>m.AuthModule) },
+  // {path: 'admin/lista-productos', component: ListaProductosComponent, canActivate:[AuthGuard] },
+  // {path: 'admin/clientes', component: ClientsComponent, canActivate:[AuthGuard] }
 
 ];
+// const routes: Routes = [
+//   {path: '', component: ListaProductosClienteComponent },
+//   {path: 'horarios', component: HorariosComponent},
+//   {path: 'login', component: LoginComponent },
+//   {path: 'admin/lista-productos', component: ListaProductosComponent, canActivate:[AuthGuard] },
+//   {path: 'admin/clientes', component: ClientsComponent, canActivate:[AuthGuard] }
+
+// ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{ useHash: true })],
+  imports: [RouterModule.forRoot(routes,{useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

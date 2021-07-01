@@ -23,6 +23,9 @@ import { HorariosComponent } from './components/horarios/horarios.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PacksComponent } from './components/packs/packs.component';
+import { NavComponent } from './components/nav/nav.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { RouterModule } from '@angular/router';
 
 
 const firebaseConfig =  {
@@ -44,7 +47,9 @@ const firebaseConfig =  {
     ListaProductosClienteComponent,
     HorariosComponent,
     ClientsComponent,
-    PacksComponent
+    PacksComponent,
+    NavComponent,
+    SidebarComponent
   ],
   imports: [
     HttpClientModule, 
@@ -57,7 +62,8 @@ const firebaseConfig =  {
     AngularFireModule.initializeApp(firebaseConfig),
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   providers: [AngularFireAuth, AuthService, AuthGuard, AngularFireModule],
   bootstrap: [AppComponent],

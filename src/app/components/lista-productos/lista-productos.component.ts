@@ -4,9 +4,6 @@ import {MatSort} from '@angular/material/sort';
 import { ProductoService } from '../../services/producto.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { FormularioComponent } from '../formulario/formulario.component';
-import { BotonService, Boton } from '../../services/boton.service';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 import * as jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';  
 import { element } from 'protractor';
@@ -23,23 +20,18 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 })
 export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  constructor(public formbuild: FormBuilder,public productoService: ProductoService, private botonService: BotonService,
-              public dialog: MatDialog, private authService: AuthService, private router: Router) {
+  constructor(public formbuild: FormBuilder,public productoService: ProductoService, 
+              public dialog: MatDialog) {
 
                 this.listadoProductos = this.productoService.getProductos().subscribe(res => this.dataSource.data = res );
                
-                this.estadoBoton = this.botonService.getBoton().subscribe(res => { this.trueFalse = res.abierto; } );
-               
+              
               
               
               
               }
-   valorBoton;
-   valorBotonCambiar;
-   trueFalse;
+   
    listadoProductos;
-   estadoBoton;
-   gatillador = false;
    panelOpenState = false;
    productoDescontarCant;
    arregloProductos = [];
@@ -71,8 +63,7 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
    
 
     
-    this.valorBoton = this.botonService.getBotonInit().subscribe(res => {this.trueFalse = res.abierto;
-    });
+    
   }
 
 
@@ -84,12 +75,7 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
 
   ngOnDestroy(){
     this.listadoProductos.unsubscribe();
-    this.estadoBoton.unsubscribe();
-    this.valorBoton.unsubscribe();
-    if(this.gatillador){
-      this.valorBotonCambiar.unsubscribe();
-    }
-    
+   
     
   }
 
@@ -215,20 +201,7 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
 
 
 
-  pruebaBoton() {
-   this.valorBotonCambiar = this.botonService.getBoton().subscribe(res => { this.trueFalse = res.abierto ; this.gatillador = true;});
-   this.botonService.cambiaBoton(this.trueFalse);
-
-  }
-
- logout() {
-    this.authService.logoutUSer().then((res) => this.router.navigateByUrl('/') );
- }
-
- horarios(){
-  this.router.navigate(['/horarios']);
-
- }
+ 
 
  imprimePDF(){
    
