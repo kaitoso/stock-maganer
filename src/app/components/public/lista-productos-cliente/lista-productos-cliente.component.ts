@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
-import { ProductoService } from '../../services/producto.service';
-import { BotonClienteService, Boton } from '../../services/boton-cliente.service';
-import { AuthService } from '../../services/auth.service';
+import { ProductoService } from '../../../services/producto.service';
+import { BotonClienteService, Boton } from '../../../services/boton-cliente.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
-import { ProductoCliService } from '../../services/producto-cli.service';
+import { ProductoCliService } from '../../../services/producto-cli.service';
 
 
 
@@ -73,12 +73,5 @@ ngAfterViewInit() {
 
 
 
-login(){
-    this.router.navigate(['/admin/lista-productos']);
-}
 
-horarios(){
-  this.router.navigate(['/horarios']);
-
- }
 }

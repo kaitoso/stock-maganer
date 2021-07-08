@@ -1,7 +1,7 @@
 mat-sidenav{
     width: 200px;
     cursor: pointer;
-    background-color: #440B5F;
+    
     position: fixed;
     top: 70px;
     z-index: 1000;
@@ -17,4 +17,23 @@ mat-sidenav{
     top: 0;
     z-index: 1000;
 
+}
+.padre{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+.sesion{
+    display: flex;
+    justify-content: right;
+}
+.hijo{
+    display: flex;
+    justify-content:center;
+    
+}
+.hermanos{
+    display: flex;
 }

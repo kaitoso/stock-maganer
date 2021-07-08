@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit,DoCheck, OnDestroy, HostBinding } from '@angular/core';
 import { BotonService, Boton } from '../../services/boton.service';
 import { AuthService } from '../../services/auth.service';
-
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,15 +9,39 @@ import { Router } from '@angular/router';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit, OnDestroy {
+export class NavComponent implements OnInit,DoCheck, OnDestroy {
+
+  @HostBinding('class') cssClassTheme: any;
+  valorTheme = false;
   valorBoton;
   valorBotonCambiar;
   trueFalse;
   estadoBoton;
   gatillador = false;
-  constructor(private botonService: BotonService,private authService: AuthService, private router: Router) { 
+  activado = 'false';
+
+
+  constructor(public overlayContainer: OverlayContainer,private botonService: BotonService,private authService: AuthService, private router: Router) { 
     this.estadoBoton = this.botonService.getBoton().subscribe(res => { this.trueFalse = res.abierto; } );
                
+  }
+  llamatheme(){
+    if (this.valorTheme) {
+       this.onsetTheme('dark-theme');
+
+    }else{
+      this.onsetTheme('light-theme');
+    }
+  }
+
+  public onsetTheme(e: string){
+    this.overlayContainer.getContainerElement().classList.add(e);
+    this.cssClassTheme = e;
+  }
+  ngDoCheck(): void {
+    
+    this.activado = localStorage.getItem('activado') || "false";
+
   }
   ngOnDestroy(){
    
@@ -30,7 +54,11 @@ export class NavComponent implements OnInit, OnDestroy {
     
   }
 
+  
+
   ngOnInit() {
+    
+    this.activado = localStorage.getItem('activado') || "false";
     this.valorBoton = this.botonService.getBotonInit().subscribe(res => {this.trueFalse = res.abierto;
     });
   }
@@ -42,6 +70,8 @@ export class NavComponent implements OnInit, OnDestroy {
    }
  
   logout() {
+     localStorage.removeItem('activado');
+     this.activado = 'false';
      this.authService.logoutUSer().then((res) => this.router.navigateByUrl('/') );
   }
  
@@ -49,6 +79,11 @@ export class NavComponent implements OnInit, OnDestroy {
    this.router.navigate(['/horarios']);
  
   }
+  login(){
+    this.router.navigate(['/admin/lista-productos']);
+}
+
+
 
 
 }

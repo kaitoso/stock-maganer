@@ -14,18 +14,20 @@ import { FormularioComponent } from './components/formulario/formulario.componen
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { LoginComponent } from './components/login/login.component';
+
 import { AngularFireAuth } from '@angular/fire/auth';
-import { ListaProductosClienteComponent } from './components/lista-productos-cliente/lista-productos-cliente.component';
+import { ListaProductosClienteComponent } from './components/public/lista-productos-cliente/lista-productos-cliente.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
-import { HorariosComponent } from './components/horarios/horarios.component';
+import { HorariosComponent } from './components/public/horarios/horarios.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PacksComponent } from './components/packs/packs.component';
 import { NavComponent } from './components/nav/nav.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
+import { NavModule } from './components/nav/nav.module';
+import { PublicModule } from './components/public/public.module';
 
 
 const firebaseConfig =  {
@@ -40,16 +42,13 @@ const firebaseConfig =  {
 @NgModule({
   declarations: [
     AppComponent,
-    ListaProductosComponent,
+    
     FormularioComponent,
     ToolbarComponent,
-    LoginComponent,
-    ListaProductosClienteComponent,
-    HorariosComponent,
-    ClientsComponent,
+
+  
     PacksComponent,
-    NavComponent,
-    SidebarComponent
+    
   ],
   imports: [
     HttpClientModule, 
@@ -63,7 +62,9 @@ const firebaseConfig =  {
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    NavModule,
+    PublicModule
   ],
   providers: [AngularFireAuth, AuthService, AuthGuard, AngularFireModule],
   bootstrap: [AppComponent],

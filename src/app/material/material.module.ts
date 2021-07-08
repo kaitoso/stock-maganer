@@ -36,7 +36,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatIconModule} from '@angular/material/icon';
 @NgModule({
-  imports: [CommonModule, BrowserAnimationsModule,
+  imports: [CommonModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,

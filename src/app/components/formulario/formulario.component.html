@@ -1,22 +1,30 @@
 <div class="container">
+    <!-- <mat-checkbox [(ngModel)]="isReadOnly">Productos</mat-checkbox> -->
     <div class="hermanos">
-         <mat-form-field>
-            <input matInput placeholder="SKU" name="nombre" [(ngModel)]='this.producto.seleccion.skud'>
+         <mat-form-field  appearance="legacy">
+            <input   id="sku" matInput placeholder="SKU" name="nombre" [(ngModel)]='this.producto.seleccion.skud'>
         </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Marca" name="nombre" [(ngModel)]='this.producto.seleccion.marca'>
+
+        <mat-form-field appearance="legacy">
+            <input id="marca" matInput placeholder="Marca" name="nombre" [(ngModel)]='this.producto.seleccion.marca'>
         </mat-form-field>
        
        
     </div>
     <div class="hermanos">
-        <mat-form-field>
-            <input matInput placeholder="Linea" name="nombre" [(ngModel)]='this.producto.seleccion.linea'>
+        <mat-form-field appearance="legacy">
+    
+            <input matInput placeholder="CODIGO DE BARRAS" name="nombre" [(ngModel)]='this.producto.seleccion.cod_barra'>
+        </mat-form-field>
+    </div>
+    <div class="hermanos">
+        <mat-form-field appearance="legacy">
+            <input  id="linea" matInput placeholder="Linea" name="nombre" [(ngModel)]='this.producto.seleccion.linea'>
         </mat-form-field>
     
 
-        <mat-form-field>
-            <input matInput placeholder="Nombre" name="nombre" [(ngModel)]='this.producto.seleccion.nombre'>
+        <mat-form-field appearance="legacy">
+            <input id="nombre" matInput placeholder="Nombre" name="nombre" [(ngModel)]='this.producto.seleccion.nombre'>
         </mat-form-field>
     
 
@@ -24,36 +32,33 @@
       
     </div>
     <div class="hermanos">
-        <mat-form-field>
-            <input matInput placeholder="Categoria" name="nombre" [(ngModel)]='this.producto.seleccion.categoria'>
+        <mat-form-field appearance="legacy">
+            <input   matInput placeholder="Categoria" name="nombre" [(ngModel)]='this.producto.seleccion.categoria'>
         </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Descripción" name="nombre" [(ngModel)]='this.producto.seleccion.descripcion'>
+        <mat-form-field appearance="legacy" class="separador">
+            <input  matInput placeholder="Descripción" name="nombre" [(ngModel)]='this.producto.seleccion.descripcion'>
         </mat-form-field>
         
     </div>
+    <mat-divider></mat-divider>
+    <!-- <mat-checkbox [(ngModel)]="isReadOnlyLote">Lote</mat-checkbox> -->
     <div class="hermanos">
-        <mat-form-field>
-            <input matInput placeholder="Unidad de medida" name="nombre" [(ngModel)]='this.producto.seleccion.unidad_de_medida'>
+        <mat-form-field appearance="legacy" >
+            <input  matInput placeholder="Unidad de medida" name="nombre" [(ngModel)]='this.producto.seleccion.unidad_de_medida'>
         </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Cantidad" name="nombre" [(ngModel)]='this.producto.seleccion.cantidad'>
-        </mat-form-field>
+        <!-- <mat-form-field appearance="legacy">
+            <input [readonly]="!isReadOnlyLote" matInput placeholder="Cantidad" name="nombre" [(ngModel)]='this.producto.seleccion.cantidad'>
+        </mat-form-field> -->
     </div>
     <div class="hermanos">
-        <mat-form-field>
+        <!-- <mat-form-field appearance="legacy">
             <input matInput placeholder="Precio Costo" name="nombre" [(ngModel)]='this.producto.seleccion.costo'>
-        </mat-form-field>
-        <mat-form-field>
+        </mat-form-field> -->
+        <mat-form-field appearance="legacy">
             <input matInput placeholder="Precio Venta" name="precio" [(ngModel)]='this.producto.seleccion.precio'>
         </mat-form-field>
     </div>
-    <div class="hermanos">
-        <mat-form-field>
     
-            <input matInput placeholder="CODIGO DE BARRAS" name="nombre" [(ngModel)]='this.producto.seleccion.cod_barra'>
-        </mat-form-field>
-    </div>
         <button mat-stroked-button color="accent" (click)="onSaveFormulario()">Guardar<mat-icon>save</mat-icon></button>
     
 </div>

@@ -14,7 +14,27 @@ table {
      padding-right: 5px;
      text-align: center;
 }
+.mat-column-sku{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
+.mat-column-lote{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
+.mat-column-producto{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
 .mat-column-descripcion{
+     border-right: 1px solid currentColor;
+     padding-right: 5px;
+     text-align: center;
+}
+.mat-column-fecha{
      border-right: 1px solid currentColor;
      padding-right: 5px;
      text-align: center;
@@ -78,7 +98,8 @@ table {
 .containerr {
     display: flex;
     justify-content: center;
-    
+    align-items: center;
+    flex-direction: column;
     overflow: auto;
 }
 

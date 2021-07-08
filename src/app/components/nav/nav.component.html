@@ -1,30 +1,44 @@
 <header>
     <mat-toolbar color="primary" class="navbar">
         
-        <mat-toolbar-row>
-            <button class="boton-hamburguesa"  (click)="opened = !opened"  color="primary">
-                <mat-icon class="pointer">menu</mat-icon>
-            </button>
+       
            
-            <div class="row d-flex">
-                <div class="col-xs-4 col-md-4"><span>Aplicación Stock</span></div>
-
-                <div class="col-xs-4 col-md-4 ml-auto" *ngIf="this.trueFalse; else cerrado">
-                    <button  style="border-radius: 3px;"mat-raised-button color="accent" (click)="pruebaBoton()">Local abierto <mat-icon>meeting_room</mat-icon></button>
-                </div>
+           
+            <div class="row padre">
+                <div class="hermanos"><button class="boton-hamburguesa "  (click)="opened = !opened"  color="primary">
+                    <mat-icon class="pointer">menu</mat-icon>
+                </button>
+                <span class="d-none d-sm-block">Aplicación Stock</span>
+                <mat-slide-toggle (click)="llamatheme()" [(ngModel)]="valorTheme"></mat-slide-toggle>
+            </div>
+               <div class="hijo">
+               
+               
+                    <button *ngIf="this.trueFalse; else cerrado"  style="border-radius: 3px;"mat-raised-button color="accent" (click)="pruebaBoton()">Local abierto <mat-icon>meeting_room</mat-icon></button>
+                
                 <ng-template #cerrado>
-                    <div class=" col-xs-4col-md-4 ml-auto">
+                    
                         <button style="border-radius: 3px;" mat-raised-button color="warn" (click)="pruebaBoton()">Local cerrado <mat-icon>no_meeting_room</mat-icon></button>
-                    </div>
+                    
 
                 </ng-template>
-
-
-                <div class="col-xs-4 col-md-4 pull-right ml-auto">
-                    <button style="border-radius: 3px;" class="derecha" mat-stroked-button color="warn" (click)="logout()">Cerrar Sesion <mat-icon>clear</mat-icon></button>
-                </div>
             </div>
-        </mat-toolbar-row>
+
+                <div class="sesion" *ngIf="activado =='true'; else nologged" >
+                    <button style="border-radius: 3px;" class="derecha" mat-raised-button color="warn" (click)="logout()">Cerrar Sesion <mat-icon>clear</mat-icon></button>
+                   
+                    <!-- <button   mat-stroked-button color="accent" (click)="login()">Iniciar sesion <mat-icon>account_box</mat-icon></button> -->
+                </div>
+                <ng-template  #nologged>
+                   
+                <div class="">
+                   
+                    <button  mat-stroked-button color="accent" (click)="login()">Iniciar sesion <mat-icon>account_box</mat-icon></button>
+                </div>
+
+                </ng-template>
+            </div>
+       
 
 
 

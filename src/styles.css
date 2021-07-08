@@ -1,7 +1,0 @@
-@import "~@angular/material/prebuilt-themes/purple-green.css";
-body {
-    background-color: #303030;
-    color: aliceblue;
-}
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

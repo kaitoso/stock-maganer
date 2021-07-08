@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ProductoService } from '../../services/producto.service';
+import { LoteService } from 'src/app/services/lote.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import swal from'sweetalert2';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -9,19 +11,34 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./formulario.component.css']
 })
 export class FormularioComponent implements OnInit {
-
-  constructor(public producto: ProductoService, public dialogRef: MatDialogRef<FormularioComponent>,
+ 
+ titularAlerta:string='';
+ checkProducto:boolean = false;
+ isReadOnly;
+ isReadOnlyLote;
+  constructor(public lote: LoteService,public producto: ProductoService, public dialogRef: MatDialogRef<FormularioComponent>,
               @Inject(MAT_DIALOG_DATA) data) { }
 
   ngOnInit() {
+    
+    this.isReadOnly = false;
+
+    this.isReadOnlyLote=false;
+
+
   }
 
 
   onSaveFormulario() {
+    if (this.producto.seleccion.nombre) {
     if (this.producto.seleccion.id == null) {
 
+   
+         
+       
        // tslint:disable-next-line:prefer-const
        let nuevoProducto = {
+
         nombre: this.producto.seleccion.nombre,
         skud: this.producto.seleccion.skud,
         cod_barra: this.producto.seleccion.cod_barra,
@@ -33,14 +50,26 @@ export class FormularioComponent implements OnInit {
         precio: Number(this.producto.seleccion.precio),
         categoria:this.producto.seleccion.categoria,
         linea: this.producto.seleccion.linea
+
+
       };
        console.log('nuevo', nuevoProducto);
-       this.producto.agregaProducto(nuevoProducto);
+       this.producto.agregaProducto(nuevoProducto).then(res =>{
+        swal.fire('El registro fue ingresado correctamente', this.titularAlerta, 'success');
+       });
+      
 
     } else {
      this.producto.editaProductos(this.producto.seleccion);
     }
+
     this.cierra();
+
+    }else{
+      swal.fire('El registro debe tener almenos un nombre', this.titularAlerta, 'error');
+     
+    }
+   
 
   }
 

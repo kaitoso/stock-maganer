@@ -20,10 +20,10 @@ export class ProductoService {
     nombre: '',
     skud: '',
     cod_barra: '',
-       marca: '',
-       descripcion: '',
-       costo: 0,
-       unidad_de_medida: '',
+    marca: '',
+    descripcion: '',
+    costo: 0,
+    unidad_de_medida: '',
     cantidad: 0,
     precio: 0,
     categoria:"",
@@ -74,5 +74,8 @@ export class ProductoService {
 
   agregaProducto(producto: ProductoI) {
    return this.productoCollection.add(producto);
+  }
+  getProductoById(id: string){
+   return  this.productoCollection.doc(id).valueChanges();
   }
 }

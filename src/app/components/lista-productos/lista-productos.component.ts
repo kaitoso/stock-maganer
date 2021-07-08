@@ -8,7 +8,10 @@ import * as jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';  
 import { element } from 'protractor';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-
+import { MatPaginator } from '@angular/material/paginator';
+import {LoteService} from '../../services/lote.service';
+import Swal from 'sweetalert2';
+import { FormularioStockComponent } from '../formulario-stock/formulario-stock.component';
 
 
 
@@ -20,11 +23,13 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 })
 export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  constructor(public formbuild: FormBuilder,public productoService: ProductoService, 
+  constructor(public formbuild: FormBuilder,private loteService:LoteService,public productoService: ProductoService, 
               public dialog: MatDialog) {
 
-                this.listadoProductos = this.productoService.getProductos().subscribe(res => this.dataSource.data = res );
-               
+                this.listadoProductos = this.productoService.getProductos().subscribe(res => {this.dataSource.data = res;
+                  
+                } );
+                this.loteService.getLotes().subscribe(res => {this.dataLote.data = res;})
               
               
               
@@ -43,9 +48,14 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
    cantidadVieja: number;
    cantidadmedia: number;
   displayedColumns: string[] = ['skud','marca','linea','nombre','cod_barra','categoria','descripcion','unidad_de_medida', 'cantidad', 'costo','precio', 'acciones'];
+  displayedColumnsLote: string[] = ['sku','lote','producto','cantidad','fecha', 'costo'];
   dataSource = new MatTableDataSource();
+  dataLote = new MatTableDataSource();
   opened = false;
  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+ @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
+ @ViewChild(MatPaginator,{static: false}) paginatorProduct: MatPaginator;
 
     myForm = new FormGroup({
       canti: new FormControl(''),
@@ -70,7 +80,8 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
  ngAfterViewInit() {
 
      this.dataSource.sort = this.sort;
-
+     this.dataLote.paginator = this.paginator;
+     this.dataSource.paginator = this.paginatorProduct;
   }
 
   ngOnDestroy(){
@@ -81,6 +92,11 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataLote.filter = filterValue.trim().toLowerCase();
+  }
+  applyFilterLote(filterValue: string) {
+    
+    this.dataLote.filter = filterValue.trim().toLowerCase();
   }
  
 
@@ -93,6 +109,7 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
     });
 
   }
+
   descuenta(){
    const patron = /^\d*$/;
    this.productoDescontarCant = this.myForm.value.canti;
@@ -154,10 +171,25 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   onEdit(element) {
+
     this.cleanForm();
     this.abreModal();
-    if (element) {
-      this.productoService.seleccion = element;
+    
+     if (element) {
+      
+      this.productoService.seleccion = {...element};
+      
+    }
+  }
+  onStock(element) {
+
+    this.cleanFormstock();
+    this.abreModal2();
+    
+     if (element) {
+      
+      this.productoService.seleccion = {...element};
+
     }
   }
 
@@ -168,10 +200,35 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   onDelete(id: string) {
-    const val = confirm('¿Está seguro que desea eliminar este producto?');
-    if (val) {
-    this.productoService.eliminaProductos(id);
-    }
+    Swal.fire({  
+      title: 'Estas seguro de eliminar este producto? los datos borrados ya no se podran recuperar.',  
+      text: '¡No podras recuperar este archivo!',  
+      icon: 'warning',  
+      showCancelButton: true,  
+      confirmButtonText: 'Si, Borrarlo',  
+      cancelButtonText: 'No, Conservarlo'  
+    }).then((result) => {  
+      if (result.value) {  
+        this.productoService.eliminaProductos(id)
+        Swal.fire(  
+            'Borrado!',  
+            'El producto Fue borrado exitosamente',  
+            'success'  
+          )  
+        
+        
+      } else if (result.dismiss === Swal.DismissReason.cancel) {  
+        Swal.fire(  
+          'Cancelado',  
+          'El producto NO se ha borrado',  
+          'error'  
+        )  
+      }  
+    })  
+    // const val = confirm('¿Está seguro que desea eliminar este producto?');
+    // if (val) {
+   
+    // }
   }
 
   abreModal(): void {
@@ -182,8 +239,17 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
     dialogConfig.autoFocus = true;
     this.dialog.open(FormularioComponent, dialogConfig);
   }
+  abreModal2(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      title: 'Modal'
+    };
+    dialogConfig.autoFocus = true;
+    this.dialog.open(FormularioStockComponent, dialogConfig);
+  }
 
   cleanForm(): void {
+
     this.productoService.seleccion.nombre = '';
     this.productoService.seleccion.skud = '';
     this.productoService.seleccion.cod_barra = '';
@@ -196,6 +262,16 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
     this.productoService.seleccion.id = null;
     this.productoService.seleccion.categoria ='';
     this.productoService.seleccion.linea="";
+
+  }
+  cleanFormstock(): void {
+
+    this.loteService.seleccion.lote = '';
+    this.loteService.seleccion.skud = '';
+    this.loteService.seleccion.costo = 0;
+    this.loteService.seleccion.cantidad = 0;
+    this.loteService.seleccion.costo = 0;
+    this.loteService.seleccion.id = null;
 
   }
 

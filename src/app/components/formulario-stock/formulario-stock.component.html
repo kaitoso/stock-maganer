@@ -1,0 +1,36 @@
+<div class="container">
+    
+    <div class="hermanos">
+         <mat-form-field  appearance="legacy">
+            <input readonly id="sku" matInput placeholder="SKU" name="nombre" [(ngModel)]='this.producto.seleccion.skud'>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+            <input id="marca" matInput placeholder="Lote" name="nombre" [(ngModel)]='this.lote.seleccion.lote'>
+        </mat-form-field>
+       
+       
+    </div>
+    <div class="hermanos">
+        <mat-form-field appearance="legacy">
+            <input id="linea" matInput placeholder="Producto" name="nombre" [(ngModel)]='this.producto.seleccion.nombre'>
+        </mat-form-field>
+    
+
+        <mat-form-field appearance="legacy">
+            <input id="nombre" matInput placeholder="Cantidad" name="nombre" [(ngModel)]='this.lote.seleccion.cantidad'>
+        </mat-form-field>
+    
+
+       
+      
+    </div>
+    <div class="hermanos">
+        <mat-form-field appearance="legacy">
+            <input   matInput placeholder="Precio costo" name="nombre" [(ngModel)]='this.lote.seleccion.costo'>
+        </mat-form-field>
+      
+        
+    </div>
+        <button mat-stroked-button color="accent" (click)="onSaveFormulario()">Guardar<mat-icon>save</mat-icon></button>
+    
+</div>

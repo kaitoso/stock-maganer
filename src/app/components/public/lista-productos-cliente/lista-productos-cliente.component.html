@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
 
     <mat-toolbar-row>
         <span>Aplicacion stock</span> &nbsp; &nbsp; &nbsp; &nbsp;
@@ -20,13 +20,12 @@
 
 
 
-</mat-toolbar>
-
-
-<mat-form-field>
+</mat-toolbar> -->
+<app-nav></app-nav>
+<mat-form-field style="margin-top: 100px;">
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
 </mat-form-field>
-<div class="container">
+<div style="background: inherit;" class="container">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
 

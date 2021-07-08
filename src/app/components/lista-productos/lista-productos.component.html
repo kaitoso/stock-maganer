@@ -31,17 +31,7 @@
     </mat-toolbar>
 
 </header> -->
-<mat-sidenav-container>
-    <mat-sidenav #sideNav [(opened)]="opened" mode="side">
-        <mat-nav-list>
-            <a mat-list-item>Inicio</a>
-            <mat-divider></mat-divider>
-            <a mat-list-item>Packs</a>
-        </mat-nav-list>
-
-    </mat-sidenav>
-</mat-sidenav-container>
-<div class="h3 text-center pt-2">Agregar productos al stock</div>
+<div style="background: inerit;" class="h3 text-center pt-2">Agregar productos al stock</div>
 <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
 </mat-form-field>
@@ -49,36 +39,36 @@
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
 
-        <ng-container matColumnDef="nombre">
+        <ng-container class="separador" matColumnDef="nombre">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
             <td (click)="agrega(element)" class="pointer" mat-cell *matCellDef="let element"> {{element.nombre}} </td>
         </ng-container>
-        <ng-container matColumnDef="linea">
+        <ng-container class="separador" matColumnDef="linea">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Linea </th>
             <td (click)="agrega(element)" class="pointer" mat-cell *matCellDef="let element"> {{element.linea}} </td>
         </ng-container>
-        <ng-container matColumnDef="skud">
+        <ng-container class="separador" matColumnDef="skud">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> SKU</th>
             <td  mat-cell *matCellDef="let element"> {{element.skud}} </td>
         </ng-container>
-        <ng-container matColumnDef="cod_barra">
+        <ng-container class="separador" matColumnDef="cod_barra">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo de barra</th>
             <td  mat-cell *matCellDef="let element"> {{element.cod_barra}} </td>
         </ng-container>
-        <ng-container matColumnDef="marca">
+        <ng-container class="separador" matColumnDef="marca">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Marca</th>
             <td  mat-cell *matCellDef="let element"> {{element.marca}} </td>
         </ng-container>
-        <ng-container matColumnDef="categoria">
+        <ng-container class="separador" matColumnDef="categoria">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Categoria</th>
             <td  mat-cell *matCellDef="let element"> {{element.categoria}} </td>
         </ng-container>
-        <ng-container matColumnDef="descripcion">
+        <ng-container class="separador" matColumnDef="descripcion">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción</th>
             <td  mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
         </ng-container>
         
-        <ng-container matColumnDef="unidad_de_medida">
+        <ng-container class="separador" matColumnDef="unidad_de_medida">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Unidad de medida</th>
             <td  mat-cell *matCellDef="let element"> {{element.unidad_de_medida}} </td>
         </ng-container>
@@ -106,17 +96,70 @@
             </th>
             <td mat-cell *matCellDef="let element">
                 <a mat-stroked-button color="basic" routerLink="." (click)="onEdit(element)">Editar <mat-icon>edit</mat-icon></a> &nbsp;
+                <a mat-stroked-button color="primary" routerLink="." (click)="onStock(element)">Stock <mat-icon>inventory_2</mat-icon></a> &nbsp;
                 <button mat-stroked-button color="warn" (click)="onDelete(element.id)">Eliminar<mat-icon>delete</mat-icon></button>
             </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
+        
     </table>
-
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
 
+<div style="background: inerit;" class="h3 text-center pt-2">Lote</div>
+<mat-form-field>
+    <input matInput (keyup)="applyFilterLote($event.target.value)" placeholder="Buscar">
+</mat-form-field>
+<div class="container">
+    <table mat-table [dataSource]="dataLote" class="mat-elevation-z8" >
+
+
+        <ng-container class="separador" matColumnDef="sku">
+            <th mat-header-cell *matHeaderCellDef > SKU </th>
+            <td class="pointer" mat-cell *matCellDef="let element"> {{element.skud}} </td>
+        </ng-container>
+        <ng-container class="separador" matColumnDef="lote">
+            <th mat-header-cell *matHeaderCellDef > Lote </th>
+            <td class="pointer" mat-cell *matCellDef="let element"> {{element.lote}} </td>
+        </ng-container>
+        <ng-container class="separador" matColumnDef="producto">
+            <th mat-header-cell *matHeaderCellDef > Nombre Producto</th>
+            <td  mat-cell *matCellDef="let element"> {{element.nombreProd}} </td>
+        </ng-container>
+        <ng-container class="separador" matColumnDef="cantidad">
+            <th mat-header-cell *matHeaderCellDef > cantidad</th>
+            <td  mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+        </ng-container>
+        <ng-container class="separador" matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef >Fecha</th>
+            <td  mat-cell *matCellDef="let element"> {{element.fecha.toDate() | date:'dd/MM/yyyy'}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="costo">
+            <th mat-header-cell *matHeaderCellDef >Precio costo</th>
+            <td  mat-cell *matCellDef="let element"> {{element.costo | currency:'CLP':'symbol'}} </td>
+        </ng-container>
+       
+
+        <!-- <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef> Acciones: &nbsp; &nbsp;
+                <button mat-stroked-button color="accent" (click)="onAdd()">Agregar<mat-icon>add</mat-icon></button>
+
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <a mat-stroked-button color="basic" routerLink="." (click)="onEdit(element)">Editar <mat-icon>edit</mat-icon></a> &nbsp;
+                <button mat-stroked-button color="warn" (click)="onDelete(element.id)">Eliminar<mat-icon>delete</mat-icon></button>
+            </td>
+        </ng-container> -->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsLote"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsLote;"></tr>
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
 
 <mat-divider></mat-divider>
 <div class="h3 text-center pt-5">Descontar productos del stock</div>

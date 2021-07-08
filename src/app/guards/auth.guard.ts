@@ -16,7 +16,11 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     .pipe(map(authState => !!authState))
     .pipe(tap(auth => {
       if(!auth){
-        this.router.navigate(['login']);
+        
+        this.router.navigate(['auth/login']);
+
+      }else{
+        localStorage.setItem('activado', "true");
       } 
      
     }));
@@ -26,6 +30,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+      
     return true;
   }
   canLoad(
