@@ -20,7 +20,7 @@ export class FormularioComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) data) { }
 
   ngOnInit() {
-    
+
     this.isReadOnly = false;
 
     this.isReadOnlyLote=false;
@@ -38,7 +38,7 @@ export class FormularioComponent implements OnInit {
        
        // tslint:disable-next-line:prefer-const
        let nuevoProducto = {
-
+        imagen: this.producto.seleccion.imagen,
         nombre: this.producto.seleccion.nombre,
         skud: this.producto.seleccion.skud,
         cod_barra: this.producto.seleccion.cod_barra,

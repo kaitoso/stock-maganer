@@ -39,6 +39,16 @@
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
 
+        <ng-container class="separador" matColumnDef="imagen">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> imagen </th>
+            <td (click)="modalImagen(element)" class="pointer" mat-cell *matCellDef="let element"> <img *ngIf="element.imagen ; else img" [src]="element.imagen" width="100px;" height="100px;" [alt]="element.nombre" >
+            
+                
+                <ng-template #img>
+                    <img  src="https://pngimg.com/uploads/box/box_PNG100706.png" width="100px;" height="100px;" >
+
+                </ng-template> </td>
+        </ng-container>
         <ng-container class="separador" matColumnDef="nombre">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
             <td (click)="agrega(element)" class="pointer" mat-cell *matCellDef="let element"> {{element.nombre}} </td>
@@ -48,11 +58,11 @@
             <td (click)="agrega(element)" class="pointer" mat-cell *matCellDef="let element"> {{element.linea}} </td>
         </ng-container>
         <ng-container class="separador" matColumnDef="skud">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> SKU</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> SKU (producto)</th>
             <td  mat-cell *matCellDef="let element"> {{element.skud}} </td>
         </ng-container>
         <ng-container class="separador" matColumnDef="cod_barra">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo de barra</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> SKU (interno)</th>
             <td  mat-cell *matCellDef="let element"> {{element.cod_barra}} </td>
         </ng-container>
         <ng-container class="separador" matColumnDef="marca">

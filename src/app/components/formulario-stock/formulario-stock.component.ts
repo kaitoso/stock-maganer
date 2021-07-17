@@ -43,12 +43,13 @@ export class FormularioStockComponent implements OnInit {
            fecha: new Date(this.lote.seleccion.fecha),
            idProducto: this.producto.seleccion.id,
            lote: this.lote.seleccion.lote,
-           skud: this.lote.seleccion.skud,
+           skud: this.producto.seleccion.skud,
            nombreProd: this.producto.seleccion.nombre
 
          };
          let nuevoProducto = {
           id: this.producto.seleccion.id,
+          imagen: this.producto.seleccion.imagen,
           nombre: this.producto.seleccion.nombre,
           skud: this.producto.seleccion.skud,
           cod_barra: this.producto.seleccion.cod_barra,

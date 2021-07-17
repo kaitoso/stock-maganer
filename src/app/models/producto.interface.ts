@@ -1,6 +1,7 @@
 export interface ProductoI {
     nombre: string;
     skud: string;
+    imagen: string;
     cod_barra: string;
     marca : string; 
     descripcion: string;

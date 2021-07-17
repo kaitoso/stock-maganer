@@ -18,6 +18,7 @@ export class ProductoService {
   public seleccion = {
     id: null,
     nombre: '',
+    imagen: '',
     skud: '',
     cod_barra: '',
     marca: '',
@@ -52,6 +53,7 @@ export class ProductoService {
     // tslint:disable-next-line:one-variable-per-declaration
     const productoeditar: ProductoI = {
        nombre: producto.nombre,
+       imagen: producto.imagen,
        skud: producto.skud,
        cod_barra: producto.cod_barra,
        marca: producto.marca,

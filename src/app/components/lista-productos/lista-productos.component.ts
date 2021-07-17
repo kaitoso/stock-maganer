@@ -36,22 +36,22 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
               
               }
    
-   listadoProductos;
-   panelOpenState = false;
-   productoDescontarCant;
-   arregloProductos = [];
-   productotemporal;
-   totalprod;
-   total = 0;
-   recontarcantidad;
-   cantidadNueva: number;
-   cantidadVieja: number;
-   cantidadmedia: number;
-  displayedColumns: string[] = ['skud','marca','linea','nombre','cod_barra','categoria','descripcion','unidad_de_medida', 'cantidad', 'costo','precio', 'acciones'];
-  displayedColumnsLote: string[] = ['sku','lote','producto','cantidad','fecha', 'costo'];
-  dataSource = new MatTableDataSource();
-  dataLote = new MatTableDataSource();
-  opened = false;
+listadoProductos;
+panelOpenState = false;
+productoDescontarCant;
+arregloProductos = [];
+productotemporal;
+totalprod;
+total = 0;
+recontarcantidad;
+cantidadNueva: number;
+cantidadVieja: number;
+cantidadmedia: number;
+displayedColumns: string[] = ['skud','cod_barra','imagen','marca','linea','nombre','categoria','descripcion','unidad_de_medida', 'cantidad', 'costo','precio', 'acciones'];
+displayedColumnsLote: string[] = ['sku','lote','producto','cantidad','fecha', 'costo'];
+dataSource = new MatTableDataSource();
+dataLote = new MatTableDataSource();
+opened = false;
  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
  @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
@@ -80,8 +80,9 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
  ngAfterViewInit() {
 
      this.dataSource.sort = this.sort;
-     this.dataLote.paginator = this.paginator;
+    
      this.dataSource.paginator = this.paginatorProduct;
+      // this.dataLote.paginator = this.paginator;
   }
 
   ngOnDestroy(){
@@ -92,7 +93,7 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    this.dataLote.filter = filterValue.trim().toLowerCase();
+    // this.dataLote.filter = filterValue.trim().toLowerCase();
   }
   applyFilterLote(filterValue: string) {
     
@@ -181,6 +182,27 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
       
     }
   }
+
+  modalImagen(producto){
+
+    if(producto.imagen){
+      Swal.fire({
+        title: `${producto.nombre}`,
+        imageUrl: `${producto.imagen}`,
+        imageHeight: 400,
+       
+      });
+    } 
+  else{
+    Swal.fire({
+      title: `${producto.nombre}`,
+      imageUrl: `https://pngimg.com/uploads/box/box_PNG100706.png`,
+      imageHeight: 400,
+     
+    });
+    
+  }
+  }
   onStock(element) {
 
     this.cleanFormstock();
@@ -250,6 +272,7 @@ export class ListaProductosComponent implements OnInit, AfterViewInit, OnDestroy
 
   cleanForm(): void {
 
+    this.productoService.seleccion.imagen = '';
     this.productoService.seleccion.nombre = '';
     this.productoService.seleccion.skud = '';
     this.productoService.seleccion.cod_barra = '';

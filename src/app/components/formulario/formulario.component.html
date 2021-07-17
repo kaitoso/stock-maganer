@@ -35,16 +35,19 @@
         <mat-form-field appearance="legacy">
             <input   matInput placeholder="Categoria" name="nombre" [(ngModel)]='this.producto.seleccion.categoria'>
         </mat-form-field>
-        <mat-form-field appearance="legacy" class="separador">
-            <input  matInput placeholder="Descripción" name="nombre" [(ngModel)]='this.producto.seleccion.descripcion'>
-        </mat-form-field>
         
+        <mat-form-field appearance="legacy" class="separador">
+            <input matInput placeholder="Precio Venta" name="precio" [(ngModel)]='this.producto.seleccion.precio'>
+        </mat-form-field>
     </div>
     <mat-divider></mat-divider>
     <!-- <mat-checkbox [(ngModel)]="isReadOnlyLote">Lote</mat-checkbox> -->
     <div class="hermanos">
         <mat-form-field appearance="legacy" >
             <input  matInput placeholder="Unidad de medida" name="nombre" [(ngModel)]='this.producto.seleccion.unidad_de_medida'>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" >
+            <input  matInput placeholder="URL de imagen" name="imagen" [(ngModel)]='this.producto.seleccion.imagen'>
         </mat-form-field>
         <!-- <mat-form-field appearance="legacy">
             <input [readonly]="!isReadOnlyLote" matInput placeholder="Cantidad" name="nombre" [(ngModel)]='this.producto.seleccion.cantidad'>
@@ -54,9 +57,10 @@
         <!-- <mat-form-field appearance="legacy">
             <input matInput placeholder="Precio Costo" name="nombre" [(ngModel)]='this.producto.seleccion.costo'>
         </mat-form-field> -->
-        <mat-form-field appearance="legacy">
-            <input matInput placeholder="Precio Venta" name="precio" [(ngModel)]='this.producto.seleccion.precio'>
+        <mat-form-field appearance="legacy" class="grande" >
+            <textarea  matInput placeholder="Descripción" name="nombre" [(ngModel)]='this.producto.seleccion.descripcion'></textarea>
         </mat-form-field>
+        
     </div>
     
         <button mat-stroked-button color="accent" (click)="onSaveFormulario()">Guardar<mat-icon>save</mat-icon></button>
